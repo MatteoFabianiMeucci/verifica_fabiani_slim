@@ -1,0 +1,141 @@
+SCUOLE
+-- 1 --
+curl http://localhost:8080/scuole
+Richiesta:
+GET    /scuole                 ScuoleController:index
+Risposta
+Status code: 200   
+[{"id": 1, "nome":"ITIS Meucci", "indirizzo": "Via del Filarete, 17"},  {"id": 2 , "nome":"Leonardo da Vinci", "indirizzo": "Via Garibaldi, 10"}]
+
+
+-- 2 --
+curl http://localhost:8080/scuole/1
+Richiesta:
+GET    /scuole/1                 ScuoleController:show
+Risposte:
+
+Status code: 200   
+[{"id": 1, "nome":"ITIS Meucci", "indirizzo": "Via del Filarete, 17"}]
+
+Status code: 404
+[{"msg":"Scuola inesistente"}]
+
+
+-- 3 --
+curl -X POST http://locahost:8080/scuole -H "Content-Type: application/json" -d '{"nome": "Peano", "indirizzo": "Piazza la bomba e scappa"}'
+Richiesta:
+POST    /scuole                 ScuoleController:create
+Risposte:
+
+Status code: 201   
+[{"msg" => "Created"}]
+
+Status code: 500   
+[{"msg" => "Impossibile creare la risorsa"}]
+
+
+-- 4 --
+curl -X PUT http://localhost:8080/scuole/3 -H "Content-Type: application/json" -d '{"nome": "Peano", "indirizzo": "Piazza la bomba"}'
+Richiesta:
+PUT    /scuole/3                 ScuoleController:update
+Risposte:
+
+Status code: 201   
+[{"msg" => "Updated"}]
+
+Status code: 404
+[{"msg":"Scuola inesistente"}]
+
+Status code: 500   
+[{"msg" => "Impossibile aggiornare la risorsa"}]
+
+
+-- 5 --
+curl -X DELETE http://localhost:8080/scuole/3
+Richiesta:
+DELETE    /scuole/3                 ScuoleController:update
+Risposte:
+
+Status code: 201   
+[{"msg" => "Deleted"}]
+
+Status code: 404
+[{"msg":"Scuola inesistente"}]
+
+Status code: 500   
+[{"msg" => "Impossibile cancellare la risorsa"}]
+
+
+DOCENTI
+-- 1 --
+curl http://localhost:8080/scuole/1/docenti
+Richiesta:
+GET    /scuola/1/docenti                 DocentiController:index
+Risposte:
+Status code: 200   
+[{"id": 1, "nome":"Claudio", "Cognome": "Benvenuti"},  {"id": 2 , "nome":"Ivan", "cognome": "Bruno"}]
+
+Status code: 404
+[{"msg":"Scuola inesistente"}]
+
+
+-- 2 --
+curl http://localhost:8080/scuole/1/docenti/1
+Richiesta:
+GET    /scuola/1/docenti/1                DocentiController:show
+Risposte:
+
+Status code: 200   
+[{"id": 1, "nome":"Claudio", "Cognome": "Benvenuti"}]
+
+Status code: 404
+[{"msg":"Scuola inesistente"}]
+
+Status code: 404
+[{"msg":"Docente inesistente"}]
+
+
+-- 3 --
+curl -X POST http://localhost:8080/scuole/1/docenti -H "Content-Type: application/json" -d '{"nome": "matteo", "cognome": "Fabiani"}'
+
+Richiesta:
+POST    /scuola/1/docenti                DocentiController:create
+Risposte:
+
+Status code: 201   
+[{"msg" => "Created"}]
+
+Status code: 500   
+[{"msg" => "Impossibile creare la risorsa"}]
+
+
+-- 4 --
+curl -X PUT http://localhost:8080/scuole/1/docenti/3 -H "Content-Type: application/json" -d '{"nome": "Mario", "cognome": "Fabiani"}'
+Richiesta:
+PUT    /scuola/1/docenti/3                DocentiController:create
+Risposte:
+
+Status code: 201   
+[{"msg" => "Updated"}]
+
+Status code: 404
+[{"msg":"Scuola inesistente"}]
+
+Status code: 404
+[{"msg":"Docente inesistente"}]
+
+Status code: 500   
+[{"msg" => "Impossibile aggiornare la risorsa"}]
+
+
+-- 5 --
+curl -X DELETE http://localhost:8080/docenti/3
+Richiesta:
+DELETE    /scuola/1/docenti/3                DocentiController:create
+Risposte:
+
+Status code: 201   
+[{"msg" => "Deleted"}]
+
+Status code: 500   
+[{"msg" => "Impossibile cancellare la risorsa"}]
