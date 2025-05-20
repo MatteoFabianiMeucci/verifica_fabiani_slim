@@ -4,8 +4,8 @@ export default function ScuoleRow(props){
     const caricaScuole = props.caricaScuole;
     const [isDeleting, setDeleting] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const [nome, setNome] = useState("");
-    const [indirizzo, setIndirizzo] = useState("");
+    const [nome, setNome] = useState(s.nome);
+    const [indirizzo, setIndirizzo] = useState(s.indirizzo);
     const [err, setErr] = useState("");
 
     function deleteScuola(){
@@ -18,7 +18,7 @@ export default function ScuoleRow(props){
             setErr("Tutti i campi sono obbligatori");
             return;
           }
-        await fetch("http://localhost:8080/scuole", {
+        await fetch("http://localhost:8080/scuole/" +s.id, {
             method:"PUT",
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify({"nome": nome, "indirizzo": indirizzo})
@@ -27,17 +27,17 @@ export default function ScuoleRow(props){
         setNome("");
         setIndirizzo("");
         caricaScuole();
-    }
+}
     return(
         <tr> 
             <td>{s.id}</td>
             {isEditing ? (
                 <>
                     <td>
-                        <input type = "text" onChange={(e) => setNome(e.target.value)} />
+                        <input type = "text" value ={nome} onChange={(e) => setNome(e.target.value)} />
                     </td>
                     <td>
-                        <input type = "text" onChange={(e) => setIndirizzo(e.target.value)} />
+                        <input type = "text" value ={indirizzo} onChange={(e) => setIndirizzo(e.target.value)} />
                     </td>
                     <td>
                     <button onClick={updateScuola}>save</button>
