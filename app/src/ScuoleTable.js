@@ -6,6 +6,12 @@ export default function ScuoleTable(props){
     return(
         <table border = "1">
             <tbody>
+                <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Indirizzo</th>
+                <th></th>
+                </tr>
                 {scuole.map(s => 
                     <ScuoleRow scuola={s} key={s.id} caricaScuole={caricaScuole} />
                     )}

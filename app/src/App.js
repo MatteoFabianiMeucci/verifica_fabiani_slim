@@ -46,7 +46,7 @@ function App() {
               <h5>nome:</h5>
               <input type = "text" onChange={(e) => setNome(e.target.value)} ></input>
               <h5>indirizzo:</h5>
-              <input type = "text" onChange={(e) => setIndirizzo(e.target.value)}></input>
+              <input type = "text" onChange={(e) => setIndirizzo(e.target.value)} />
               {err !== "" && <div>{err}</div>}
               <br />
               <button onClick={salvaScuola}>salva</button>
