@@ -5,9 +5,11 @@ export default function ScuoleTable(props){
     const caricaScuole = props.caricaScuole;
     return(
         <table border = "1">
-          {scuole.map(s => 
-            <ScuoleRow scuola={s} caricaScuole={caricaScuole} />
-            )}
+            <tbody>
+                {scuole.map(s => 
+                    <ScuoleRow scuola={s} key={s.id} caricaScuole={caricaScuole} />
+                    )}
+            </tbody>
         </table>
     )
 }
